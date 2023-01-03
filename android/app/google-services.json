@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "302554772027",
+    "project_id": "list-tiles-fbproject",
+    "storage_bucket": "list-tiles-fbproject.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:302554772027:android:4c0bc7feb2e0fc64f0e21e",
+        "android_client_info": {
+          "package_name": "com.example.list_tiles"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "302554772027-2isqn9f2mg32qjftg994ubfnpb9v8g6l.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBz-WIfVyFUYQ2uNf9-2zGYRRsmTe4tLjI"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "302554772027-2isqn9f2mg32qjftg994ubfnpb9v8g6l.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
