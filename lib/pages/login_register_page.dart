@@ -3,7 +3,6 @@ import 'package:flutter/material.dart';
 
 import '../auth.dart';
 import '../common/common_template.dart';
-import '../main.dart';
 
 class LoginRegisterPage extends StatefulWidget {
   const LoginRegisterPage({super.key});
@@ -45,10 +44,15 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     return const Text('Firebase Auth');
   }
 
-  Widget _entryField(String title, TextEditingController controller) {
+  Widget _entryField(
+      String title, TextEditingController controller, Icon icon, OutlineInputBorder border) {
     return TextField(
       controller: controller,
-      decoration: InputDecoration(labelText: title),
+      decoration: InputDecoration(
+        labelText: title,
+        prefixIcon: icon,
+        border: const OutlineInputBorder(),
+      ),
     );
   }
 
@@ -69,7 +73,29 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
             isLogin = !isLogin;
           });
         }),
-        child: Text(isLogin ? 'Register instead' : 'Login instead'));
+        child: Row(
+          children: [
+            Text(isLogin ? 'Register instead' : 'Login instead'),
+          ],
+        ));
+  }
+
+  showLoaderDialog(BuildContext context) {
+    AlertDialog alert = AlertDialog(
+      content: Row(
+        children: [
+          const CircularProgressIndicator(),
+          Container(margin: const EdgeInsets.only(left: 7), child: const Text("Loading...")),
+        ],
+      ),
+    );
+    showDialog(
+      barrierDismissible: false,
+      context: context,
+      builder: (BuildContext context) {
+        return alert;
+      },
+    );
   }
 
   @override
@@ -82,19 +108,47 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
         appBar: AppBar(
           title: _title(),
         ),
-        body: Container(
-          height: double.infinity,
-          width: double.infinity,
-          padding: const EdgeInsets.all(20),
+        body: CommonTemplate(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
             children: [
-              _entryField('email', _controllerEmail),
-              _entryField('password', _controllerPassword),
+              Image.network('https://miro.medium.com/max/1400/1*eL-dHo08RwyLYOl17DNTog.png'),
+              const SizedBox(
+                height: 30,
+              ),
+              _entryField(
+                'Email',
+                _controllerEmail,
+                const Icon(Icons.email_outlined),
+                const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(20),
+                  ),
+                ),
+              ),
+              const SizedBox(
+                height: 20,
+              ),
+              _entryField(
+                'Password',
+                _controllerPassword,
+                const Icon(Icons.lock_outlined),
+                const OutlineInputBorder(
+                  borderRadius: BorderRadius.all(
+                    Radius.circular(30),
+                  ),
+                ),
+              ),
               _errorMessage(),
               _submitButton(),
-              _loginOrRegisterButton()
+              Row(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Text(isLogin ? 'No account?' : 'Have an account already?'),
+                  _loginOrRegisterButton(),
+                ],
+              )
             ],
           ),
         ),
@@ -102,99 +156,3 @@ class _LoginRegisterPageState extends State<LoginRegisterPage> {
     );
   }
 }
-
-// Column(
-//         mainAxisAlignment: MainAxisAlignment.center,
-//         children: [
-//           const FlutterLogo(
-//             style: FlutterLogoStyle.stacked,
-//             size: 200,
-//           ),
-//           const SizedBox(
-//             height: 40,
-//           ),
-//           Row(
-//             children: [
-//               Text(
-//                 'Email',
-//                 textAlign: TextAlign.left,
-//                 style: TextStyle(fontSize: 18, color: Colors.grey.shade200),
-//               ),
-//             ],
-//           ),
-//           const SizedBox(
-//             height: 10,
-//           ),
-//           TextField(
-//             focusNode: _emailField,
-//             controller: _emailController,
-//             decoration: const InputDecoration(
-//               hintText: 'Enter your email',
-//               prefixIcon: Icon(Icons.email),
-//               border: OutlineInputBorder(
-//                 borderRadius: BorderRadius.all(
-//                   Radius.circular(20),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           const SizedBox(
-//             height: 20,
-//           ),
-//           Row(
-//             children: [
-//               Text(
-//                 'Password',
-//                 textAlign: TextAlign.left,
-//                 style: TextStyle(fontSize: 18, color: Colors.grey.shade200),
-//               ),
-//             ],
-//           ),
-//           const SizedBox(
-//             height: 10,
-//           ),
-//           TextField(
-//             focusNode: _passwordFocus,
-//             controller: _passwordController,
-//             decoration: InputDecoration(
-//               hintText: 'Enter your password',
-//               prefixIcon: const Icon(Icons.lock),
-//               suffixIcon: GestureDetector(
-//                   onTap: () {},
-//                   child: const Icon(Icons.remove_red_eye_outlined)),
-//               border: const OutlineInputBorder(
-//                 borderRadius: BorderRadius.all(
-//                   Radius.circular(20),
-//                 ),
-//               ),
-//             ),
-//           ),
-//           const SizedBox(
-//             height: 10,
-//           ),
-//           SizedBox(
-//             width: double.maxFinite,
-//             child: ElevatedButton(
-//               onPressed: () async {
-//                 await signIn;
-//               },
-//               style: ElevatedButton.styleFrom(
-//                 shape: RoundedRectangleBorder(
-//                   borderRadius: BorderRadius.circular(20.0),
-//                 ),
-//               ),
-//               child: const Text('Login'),
-//             ),
-//           ),
-//           Row(
-//             mainAxisAlignment: MainAxisAlignment.center,
-//             children: [
-//               Text(
-//                 'No account?',
-//                 style: TextStyle(color: Colors.grey.shade200),
-//               ),
-//               TextButton(onPressed: (() {}), child: const Text('Create one.'))
-//             ],
-//           )
-//         ],
-//       ),

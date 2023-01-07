@@ -1,6 +1,7 @@
 {
   "project_info": {
     "project_number": "302554772027",
+    "firebase_url": "https://list-tiles-fbproject-default-rtdb.europe-west1.firebasedatabase.app",
     "project_id": "list-tiles-fbproject",
     "storage_bucket": "list-tiles-fbproject.appspot.com"
   },
@@ -29,6 +30,13 @@
             {
               "client_id": "302554772027-2isqn9f2mg32qjftg994ubfnpb9v8g6l.apps.googleusercontent.com",
               "client_type": 3
+            },
+            {
+              "client_id": "302554772027-g8pd41c2aqt7grm4f3rbh40gm7v7p7jt.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.listTiles"
+              }
             }
           ]
         }
